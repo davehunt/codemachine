@@ -46,8 +46,13 @@ h1 {
   text-align: center;
   text-shadow: 3px 3px 0 #666;
 }
-a#start {
-  background: green;
+.score {
+  color: #fff;
+  font-size: 2em;
+  margin: 0 30px;
+  text-align: right;
+}
+.button {
   border: solid 1px rgba(0, 0, 0, 0.6);
   border-radius: 4px;
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.6), 0 0 4px rgba(255, 255, 255, 0.6), inset 0 25px 0 rgba(255, 255, 255, 0.1);
@@ -60,6 +65,9 @@ a#start {
   text-shadow: rgba(0, 0, 0, 0.7);
   width: 200px;
 }
+a#start {
+  background: green;
+}
 a#start:hover {
   background: lime;
   color: #000;
@@ -70,6 +78,22 @@ a#start.disabled {
   color: #888;
 }
 a#start.disabled:hover {
+  background: #666;
+  color: #888;
+}
+a#reset {
+  background: maroon;
+}
+a#reset:hover {
+  background: red;
+  color: #000;
+  text-decoration: none;
+}
+a#reset.disabled {
+  background: #666;
+  color: #888;
+}
+a#reset.disabled:hover {
   background: #666;
   color: #888;
 }
@@ -140,10 +164,10 @@ a#start.disabled:hover {
   text-shadow: 2px 2px 0 #fff;
   width: auto;
 }
-.answers a {
+.more-info {
   display: block;
   margin: 0 auto;
 }
-.answers a:hover {
+.more-info:hover {
   text-decoration: underline;
 }
