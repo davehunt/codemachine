@@ -1,0 +1,149 @@
+/* common.css
+ * by Andi Smith */
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: #27214D;
+  font: 62.5% "helvetica neue", arial, sans-serif;
+  margin: 0 auto;
+}
+header,
+footer,
+nav,
+section,
+article,
+aside {
+  display: block;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+p {
+  font-size: 1.1em;
+  margin: 0;
+}
+a {
+  color: #fff;
+  font-size: 2.2em;
+  text-align: center;
+  text-decoration: none;
+}
+table {
+  font-size: 1em;
+}
+h1 {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 8em;
+  margin: 10px auto;
+  text-align: center;
+  text-shadow: 3px 3px 0 #666;
+}
+a#start {
+  background: green;
+  border: solid 1px rgba(0, 0, 0, 0.6);
+  border-radius: 4px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.6), 0 0 4px rgba(255, 255, 255, 0.6), inset 0 25px 0 rgba(255, 255, 255, 0.1);
+  color: #fff;
+  display: block;
+  font-size: 2.4em;
+  margin: 30px auto;
+  padding: 12px 0;
+  text-align: center;
+  text-shadow: rgba(0, 0, 0, 0.7);
+  width: 200px;
+}
+a#start:hover {
+  background: lime;
+  color: #000;
+  text-decoration: none;
+}
+a#start.disabled {
+  background: #666;
+  color: #888;
+}
+a#start.disabled:hover {
+  background: #666;
+  color: #888;
+}
+.machine {
+  list-style-type: none;
+  margin: 50px 0 50px 30px;
+  overflow: auto;
+  padding: 0;
+}
+.machine > li {
+  background: #fff;
+  border: solid 4px gold;
+  border-radius: 2px;
+  box-shadow: 0 0 3px #000;
+  float: left;
+  height: 150px;
+  margin: 3px 3% 3px 0%;
+  overflow: hidden;
+  padding: 0;
+  width: 30%;
+}
+.machine > li:last-child {
+  margin-left: 0;
+  margin-right: 0;
+}
+.machine .roller {
+  list-style-type: none;
+  margin: -45px 0;
+  padding: 0;
+}
+.machine .roller.short {
+  -moz-transition: margin 2s;
+  -ms-transition: margin 2s;
+  -o-transition: margin 2s;
+  -webkit-transition: margin 2s;
+  transition: margin 2s;
+}
+.machine .roller.medium {
+  -moz-transition: margin 4s;
+  -ms-transition: margin 4s;
+  -o-transition: margin 4s;
+  -webkit-transition: margin 4s;
+  transition: margin 4s;
+}
+.machine .roller.long {
+  -moz-transition: margin 6s;
+  -ms-transition: margin 6s;
+  -o-transition: margin 6s;
+  -webkit-transition: margin 6s;
+  transition: margin 6s;
+}
+.machine .roller.finish {
+  margin: -585px 0 0;
+}
+.machine .roller li {
+  background: #fcfcfc;
+  border-top: solid 1px #fff;
+  border-bottom: solid 1px #eee;
+  box-shadow: inset 0 -3px 25px rgba(125, 125, 125, 0.1), inset 0 3px 25px rgba(125, 125, 125, 0.1);
+  float: none;
+  font-size: 3.8em;
+  font-weight: bold;
+  height: 75px;
+  line-height: 2em;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  text-shadow: 2px 2px 0 #fff;
+  width: auto;
+}
+.answers a {
+  display: block;
+  margin: 0 auto;
+}
+.answers a:hover {
+  text-decoration: underline;
+}
