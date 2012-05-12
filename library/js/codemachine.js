@@ -54,7 +54,7 @@ var CodeGenerator = function( options ) {
     			
 	    	}
 	    	
-	    	_debug( this.collection );
+	    	//_debug( this.collection );
 	    	
 	    },
 	    
@@ -77,26 +77,17 @@ var CodeGenerator = function( options ) {
 	    	
 	    	var keys = [];
 	    	
-	    	// Dirty dirty hack
-	    	for( var i in this.collection[8] ) {
-	    		keys.push( i );
-				total += this.collection[8][i];
-				_debug( i );
-			};
-			
-			for( var i in this.collection[18] ) {
-				keys.push( i );
-				total += this.collection[18][i];
-				_debug( i );
-			};
-			
-			for( var i in this.collection[28] ) {
-				keys.push( i );
-				total += this.collection[28][i];
-				_debug( i );
-			};
-			// end dirty hack, have a cry, try to forget it!
+	    	for( var i = 0, len = this.collection.length; i < len; i++ ) {
+	    		
+	    		for( var k in this.collection[i][9] ) {
+	    			_debug( this.collection[i][9] );
+	    			keys.push( this.collection[i][9] );
+	    			total += this.collection[i][9][k];
+	    		}
+	    		
+	    	}
 	    	
+	    	_debug( 'Total: ' + total );
 	    	
 	    	if( total == 3 ) {
 	    		this.score++;
