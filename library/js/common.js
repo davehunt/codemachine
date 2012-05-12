@@ -65,12 +65,9 @@ var roller = (function() {
                             var html = '';
                                                         
                             for(var i=start; i<stop; i++) {
-                            
                             	for( var k in game.collection[i] ) {
 									html += '<li>' + k + '</li>';
 								};
-                            	
-                                
                             }
                             
                             $(this).append(html);
@@ -78,6 +75,7 @@ var roller = (function() {
                             if (numRunning === 0) {
                                 running = false;
                                 $start.removeClass('disabled');
+                                $('#counter').text( game.score );
                             }
                         }
                     })
