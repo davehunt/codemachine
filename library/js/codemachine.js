@@ -6,7 +6,9 @@ var CodeGenerator = function( options ) {
     
     var options = {
     	tags : options.tags || null,
-    	score : options.score || 10
+    	score : options.score || 10,
+    	rollers : options.rollers || 3,
+    	elements : options.elements || 10
     }
     
     return {
@@ -15,21 +17,45 @@ var CodeGenerator = function( options ) {
     	
     	score : options.score,
     	collection : [],
-    	rollers : 3,
+    	rollers : options.rollers,
+    	elements : options.elements,
     
-	    roll : function( number ) {
-	    	this.makeCollection( number );
-			this.setScore();
-			_debug( this.collection );
+	    roll : function( noScore ) {
+	    
+	    	var noScore = noScore || false;
+	    	
+	    	this.makeCollection();
+	    	
+	    	if( !noScore ) {
+	    		this.setScore();
+	    	}
+			//_debug( this.collection );
 	    },
 	    
-	    makeCollection : function( number ) {
+	    makeCollection : function( ) {
 	    	this.collection = [];
-	    	var number = ++number * this.rollers;
-			while( --number ) {
-				var item = this.randomize();
-				this.collection.push( item );
-			}
+	    	
+	    	var rollers = this.rollers;
+	    	
+	    	while( rollers > 0 ) {
+	    		
+	    		var numberOfElems = this.elements;
+	    		rollers--;
+	    		
+	    		if( this.collection[rollers] == undefined ) {
+    				this.collection[rollers] = [];
+    			}
+	    		
+	    		while( numberOfElems > 0 ) {
+	    			var item = this.randomize();
+					this.collection[rollers].push( item );
+	    			numberOfElems--;	    			
+	    		}
+    			
+	    	}
+	    	
+	    	_debug( this.collection );
+	    	
 	    },
 	    
 	    check : function() {

@@ -1,4 +1,4 @@
-var game;
+var game; // in global scope for easy debugging
 
 var roller = (function() {
 
@@ -18,15 +18,20 @@ var roller = (function() {
 
     return {
         start: function(e) {
-            e.preventDefault();
+            
+            if( e ) {
+            	e.preventDefault();
+            }
 
             if (!running) {
 
                 running = true;
                 $start.addClass('disabled');
 
-                $roller.each(function() {
-
+                $roller.each(function( i, v ) {
+					
+					var rollerIndex = i;
+								
 					var start = 0;
 					var stop = 0;
 					
@@ -34,19 +39,13 @@ var roller = (function() {
                     switch(numRunning) {
                         case 0:
                             $(this).addClass('medium');
-                            start = 0;
-                            stop = 9;
                             break;
                         case 1:
                             $(this).addClass('short');
-                            start = 10;
-                            stop = 19;
                             break;
                         case 2:
                         default:
                             $(this).addClass('long');
-                            start = 20;
-                            stop = 29;
                             break;
                     };
 
@@ -61,16 +60,8 @@ var roller = (function() {
                             numRunning--;
 
                             $(this).removeClass('short medium long finish').children().slice(0,7).remove();
-
-                            var html = '';
-                                                        
-                            for(var i=start; i<stop; i++) {
-                            	for( var k in game.collection[i] ) {
-									html += '<li>' + k + '</li>';
-								};
-                            }
                             
-                            $(this).append(html);
+                            $(this).append( roller.makeElements( rollerIndex ) );
 
                             if (numRunning === 0) {
                                 running = false;
@@ -84,6 +75,20 @@ var roller = (function() {
             }
 
         },
+        
+        makeElements : function( i ) {
+        
+        	var html = '';
+			for( var k in game.collection[i] ) {
+        		for( kk in game.collection[i][k] ) {
+					html += '<li>' + kk + '</li>';
+				}
+			};
+			
+			return html;
+        
+        },
+        
         init: (function() {
 
 
@@ -93,11 +98,19 @@ var roller = (function() {
 				
                 $start = $('#start');
                 $roller = $('.roller');
-										
+				
+				// populate the rollers with html
+				$roller.each(function(i,v) {
+					$(this).html( roller.makeElements( i ) );
+				});
+				
+				roller.start();
+				game.roll( true );
+									
                 $start.on('click', function(e) {
 
                     roller.start(e);
-                    game.roll( 10 );
+                    game.roll();
 
                 });
                 
