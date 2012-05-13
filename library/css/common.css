@@ -30,7 +30,7 @@ p {
   font-size: 1.1em;
   margin: 0;
 }
-a {
+.answers a {
   color: #fff;
   font-size: 2.2em;
   text-align: center;
@@ -148,6 +148,7 @@ a#reset.disabled:hover {
 .machine .roller.rolling {
 	margin: -100px 0 0;
 }
+
 .machine .roller li {
   background: #fcfcfc;
   border-top: solid 1px #fff;
@@ -164,6 +165,23 @@ a#reset.disabled:hover {
   text-shadow: 2px 2px 0 #fff;
   width: auto;
 }
+
+.machine .roller li a {
+  text-decoration: none;
+  color: #333333;
+}
+
+.machine .roller li.valid:hover a {
+	color: #FFF;
+	text-shadow: 2px 2px 0 #333;
+}
+
+.machine .roller li.valid:hover {
+	border-color: green;
+	background: green;
+}
+
+
 .more-info {
   display: block;
   margin: 0 auto;

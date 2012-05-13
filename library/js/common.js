@@ -60,7 +60,20 @@ var roller = (function() {
 			for( var k in game.collection[i] ) {
         		for( kk in game.collection[i][k] ) {
         			valid = game.collection[i][k][kk] ? ' class="valid"' : '';
-					html += '<li' + valid + '>' + kk + '</li>';
+        			
+        			html += '<li' + valid + '>'
+        			
+        			if( valid != '' ) {
+        				html += '<a href="https://developer.mozilla.org/en/HTML/Element/' + kk + '" target="_blank">';
+        			}
+        			
+					html += kk;
+					
+					if( valid != '' ) {
+						html += '</a>';
+					}
+					
+					html += '</li>';
 				}
 			};
 			
