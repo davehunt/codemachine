@@ -56,14 +56,12 @@ var roller = (function() {
         makeElements : function( i ) {
         
         	var html = '';
-        	var count = 0;
+        	var valid = '';
 			for( var k in game.collection[i] ) {
         		for( kk in game.collection[i][k] ) {
-        			active = ( count == 5 ) ? ' class="active"' : '';
-					html += '<li' + active + '>' + kk + '</li>';
+        			valid = game.collection[i][k][kk] ? ' class="valid"' : '';
+					html += '<li' + valid + '>' + kk + '</li>';
 				}
-
-				count++;
 			};
 			
 			return html;
