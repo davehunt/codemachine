@@ -79,16 +79,18 @@ var CodeGenerator = function( options ) {
 	    	
 	    	for( var i = 0, len = this.collection.length; i < len; i++ ) {
 	    		
-	    		for( var k in this.collection[i][9] ) {
-	    			_debug( this.collection[i][9] );
-	    			keys.push( this.collection[i][9] );
-	    			total += this.collection[i][9][k];
+	    		// Just choosing the 5th item as our winner!
+	    		for( var k in this.collection[i][5] ) {
+	    			_debug( this.collection[i][5] );
+	    			keys.push( this.collection[i][5] );
+	    			total += this.collection[i][5][k];
 	    		}
 	    		
 	    	}
 	    	
 	    	_debug( 'Total: ' + total );
 	    	
+	    	// If all three elements are valid - you score!
 	    	if( total == 3 ) {
 	    		this.score++;
 	    		
@@ -96,7 +98,8 @@ var CodeGenerator = function( options ) {
 	    		if( ( keys[0] == keys[1] ) && ( keys[1] == keys[2] ) ) {
 	    			this.score += 2;
 	    		}
-	    		    		
+	    	
+	    	// Otherwise - you lose a point :(    		
 	    	} else {
 	    		this.score--;
 	    	}
