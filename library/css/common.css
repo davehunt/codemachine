@@ -119,9 +119,9 @@ a#reset.disabled:hover {
   margin-left: 0;
   margin-right: 0;
 }
-.machine .roller {
+.machine .roller, .machine .rolled {
   list-style-type: none;
-  margin: -45px 0;
+  margin: -355px 0 0;
   padding: 0;
 }
 .machine .roller.short {
@@ -145,8 +145,8 @@ a#reset.disabled:hover {
   -webkit-transition: margin 6s;
   transition: margin 6s;
 }
-.machine .roller.finish {
-  margin: -585px 0 0;
+.machine .roller.rolling {
+	margin: -100px 0 0;
 }
 .machine .roller li {
   background: #fcfcfc;

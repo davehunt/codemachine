@@ -2,7 +2,7 @@
     $tags = $_POST['tags'];
     $true = $_POST['true'];
     $count = 0;
-    $echoing = '[';
+    $echoing = 'var codeGeneratorTags = [';
     
     foreach($_POST['tags'] as $a_tag)
     {
@@ -16,7 +16,7 @@
     
     $echoing = substr($echoing, 0, -1);
     
-    $echoing.= ']';
+    $echoing.= '];';
     
     unlink('options.json');
     

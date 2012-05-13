@@ -6,7 +6,9 @@ var CodeGenerator = function( options ) {
     
     var options = {
     	tags : options.tags || null,
-    	score : options.score || 10
+    	score : options.score || 10,
+    	rollers : options.rollers || 3,
+    	elements : options.elements || 10
     }
     
     return {
@@ -15,21 +17,45 @@ var CodeGenerator = function( options ) {
     	
     	score : options.score,
     	collection : [],
-    	rollers : 3,
+    	rollers : options.rollers,
+    	elements : options.elements,
     
-	    roll : function( number ) {
-	    	this.makeCollection( number );
-			this.setScore();
-			_debug( this.collection );
+	    roll : function( noScore ) {
+	    
+	    	var noScore = noScore || false;
+	    	
+	    	this.makeCollection();
+	    	
+	    	if( !noScore ) {
+	    		this.setScore();
+	    	}
+			//_debug( this.collection );
 	    },
 	    
-	    makeCollection : function( number ) {
+	    makeCollection : function( ) {
 	    	this.collection = [];
-	    	var number = ++number * this.rollers;
-			while( --number ) {
-				var item = this.randomize();
-				this.collection.push( item );
-			}
+	    	
+	    	var rollers = this.rollers;
+	    	
+	    	while( rollers > 0 ) {
+	    		
+	    		var numberOfElems = this.elements;
+	    		rollers--;
+	    		
+	    		if( this.collection[rollers] == undefined ) {
+    				this.collection[rollers] = [];
+    			}
+	    		
+	    		while( numberOfElems > 0 ) {
+	    			var item = this.randomize();
+					this.collection[rollers].push( item );
+	    			numberOfElems--;	    			
+	    		}
+    			
+	    	}
+	    	
+	    	//_debug( this.collection );
+	    	
 	    },
 	    
 	    check : function() {
@@ -51,27 +77,20 @@ var CodeGenerator = function( options ) {
 	    	
 	    	var keys = [];
 	    	
-	    	// Dirty dirty hack
-	    	for( var i in this.collection[8] ) {
-	    		keys.push( i );
-				total += this.collection[8][i];
-				_debug( i );
-			};
-			
-			for( var i in this.collection[18] ) {
-				keys.push( i );
-				total += this.collection[18][i];
-				_debug( i );
-			};
-			
-			for( var i in this.collection[28] ) {
-				keys.push( i );
-				total += this.collection[28][i];
-				_debug( i );
-			};
-			// end dirty hack, have a cry, try to forget it!
+	    	for( var i = 0, len = this.collection.length; i < len; i++ ) {
+	    		
+	    		// Just choosing the 5th item as our winner!
+	    		for( var k in this.collection[i][5] ) {
+	    			_debug( this.collection[i][5] );
+	    			keys.push( this.collection[i][5] );
+	    			total += this.collection[i][5][k];
+	    		}
+	    		
+	    	}
 	    	
+	    	_debug( 'Total: ' + total );
 	    	
+	    	// If all three elements are valid - you score!
 	    	if( total == 3 ) {
 	    		this.score++;
 	    		
@@ -79,7 +98,8 @@ var CodeGenerator = function( options ) {
 	    		if( ( keys[0] == keys[1] ) && ( keys[1] == keys[2] ) ) {
 	    			this.score += 2;
 	    		}
-	    		    		
+	    	
+	    	// Otherwise - you lose a point :(    		
 	    	} else {
 	    		this.score--;
 	    	}
