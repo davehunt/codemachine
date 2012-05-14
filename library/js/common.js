@@ -43,9 +43,9 @@ var roller = (function() {
                     var tsChoice = Math.floor((Math.random()*transSpeeds.length)+0);
                     $(this).addClass( transSpeeds[tsChoice] );
                     
-
-					// Re-populate the rollers with new data
-					$(this).html( roller.makeElements( i ) );
+                    // Re-populate the rollers with new data
+                    $(this).html( roller.makeElements( i ) );
+                    $('li', $(this)).hide().fadeIn( 'fast' );
 
                 });
             }
@@ -97,6 +97,7 @@ var roller = (function() {
 				
 				// Ready to store original state of game
 				var originalItems = [];
+				var originalTitle = $('h1').text();
 				
 				// Binding the transition events here rather than in the start method
 				// to prevent multpile binds happening
@@ -117,13 +118,15 @@ var roller = (function() {
 		                	// Only run this code when all rollers have stopped rolling
 		                    if( rollingCount == $roller.length ) {
 		                        running = false;
-		                        $start.removeClass('disabled');
 		                        $('#counter').text( game.score );
 		                        
 		                        // If the score reaches zero, they lose :(
 		                        if( game.score === 0 ) {
-		                        	alert( 'Game Over' );
-		                        	$reset.click();
+		                        	// Change the text of the title & set class to re-style
+		                        	$('h1').text( 'You lose!' ).addClass( 'loser' );
+		                        } else {
+		                        	// Allow another play
+		                        	$start.removeClass('disabled');
 		                        }
 		                        
 		                        rollingCount = 0;
@@ -145,11 +148,19 @@ var roller = (function() {
                 });
                 
                 $reset.on( 'click', function( e ) {
+                	// Reset game engine
                 	game.reset();
+                	// Reset title
+                	$('h1').text( originalTitle ).removeClass( 'loser' );
+                	// Put the original html into each roller
                 	$roller.removeClass( 'short medium long rolled rolling' ).each(function( i, v ) {
                 		$(this).html( originalItems[i] );
                 	});
+                	// Display the reset score
                 	$('#counter').text( game.score );
+                	// Make sure the user can actually click the play button
+                	$start.removeClass('disabled');
+                	
                 	e.preventDefault();
                 });
                 

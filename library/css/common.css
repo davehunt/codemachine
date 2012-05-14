@@ -39,12 +39,15 @@ p {
 table {
   font-size: 1em;
 }
-h1 {
+header h1 {
   color: rgba(255, 255, 255, 0.9);
   font-size: 8em;
   margin: 10px auto;
   text-align: center;
   text-shadow: 3px 3px 0 #666;
+}
+header h1.loser {
+  color: rgba(255, 0, 0, 0.9);
 }
 .score {
   color: #fff;
@@ -125,25 +128,25 @@ a#reset.disabled:hover {
   padding: 0;
 }
 .machine .roller.short {
+  -moz-transition: margin 1s;
+  -ms-transition: margin 1s;
+  -o-transition: margin 1s;
+  -webkit-transition: margin 1s;
+  transition: margin 1s;
+}
+.machine .roller.medium {
   -moz-transition: margin 2s;
   -ms-transition: margin 2s;
   -o-transition: margin 2s;
   -webkit-transition: margin 2s;
   transition: margin 2s;
 }
-.machine .roller.medium {
-  -moz-transition: margin 4s;
-  -ms-transition: margin 4s;
-  -o-transition: margin 4s;
-  -webkit-transition: margin 4s;
-  transition: margin 4s;
-}
 .machine .roller.long {
-  -moz-transition: margin 6s;
-  -ms-transition: margin 6s;
-  -o-transition: margin 6s;
-  -webkit-transition: margin 6s;
-  transition: margin 6s;
+  -moz-transition: margin 3s;
+  -ms-transition: margin 3s;
+  -o-transition: margin 3s;
+  -webkit-transition: margin 3s;
+  transition: margin 3s;
 }
 .machine .roller.rolling {
 	margin: -100px 0 0;
