@@ -31,7 +31,7 @@ var roller = (function() {
             game.roll( noScore );
 						
             if (!running && !noScore) {
-
+				
                 running = true;
                 $start.addClass('disabled');
 

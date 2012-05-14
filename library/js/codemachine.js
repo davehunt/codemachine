@@ -24,9 +24,8 @@ var CodeGenerator = function( options ) {
 	    
 	    	var noScore = noScore || false;
 	    	
-	    	this.makeCollection();
-	    	
 	    	if( !noScore ) {
+	    		this.makeCollection();
 	    		this.setScore();
 	    	}
 			//_debug( this.collection );
@@ -68,7 +67,7 @@ var CodeGenerator = function( options ) {
 	    },
 	    
 	    randomize : function() {
-	    	return this.tags[Math.floor(this.tags.length * Math.random())]
+	    	return this.tags[Math.floor(this.tags.length * Math.random())];
 	    },
 	    
 	    setScore : function( ) {
